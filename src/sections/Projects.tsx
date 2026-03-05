@@ -138,7 +138,7 @@ export function Projects() {
                     onClick={closeModal}
                 >
                     <div
-                        className="bg-white rounded-3xl sm:rounded-4xl w-full max-w-2xl p-6 sm:p-10 flex flex-col gap-6 shadow-2xl relative animate-in zoom-in-95 duration-300"
+                        className="bg-white rounded-3xl sm:rounded-4xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-10 flex flex-col gap-6 shadow-2xl relative animate-in zoom-in-95 duration-300"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
@@ -160,7 +160,7 @@ export function Projects() {
                                 {selectedProject.title}
                             </h3>
                             <div className="w-full h-px bg-neutral-200"></div>
-                            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
+                            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed whitespace-pre-wrap">
                                 {selectedProject.body}
                             </p>
 
@@ -216,7 +216,7 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
             </div>
             <div className="w-full flex flex-col gap-1 px-1">
                 <h3 className="text-xl sm:text-2xl font-medium leading-tight text-neutral-700 group-hover:text-black transition-colors group-hover:underline group-active:underline">{project.title}</h3>
-                <p className="text-base sm:text-lg text-neutral-500">{project.description}</p>
+                <p className="text-base sm:text-lg text-neutral-500 truncate">{project.description}</p>
             </div>
         </div>
     )
