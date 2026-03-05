@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { createPortal } from "react-dom";
 import { createClient } from "contentful";
 
@@ -19,46 +20,64 @@ export interface ProjectData {
 }
 
 export function Projects() {
+    const { t, i18n } = useTranslation();
     const [projectsData, setProjectsData] = useState<ProjectData[]>([]);
     const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
-    const [activeTab, setActiveTab] = useState("Все");
-    const [categories, setCategories] = useState<string[]>(["Все", "Брендинг", "Разработка Сайтов", "Анимация/Моушн", "Маркетинг/СММ"]);
+    const [activeTab, setActiveTab] = useState("all");
+    const [categories, setCategories] = useState<string[]>(["all", "branding", "website", "animation", "marketing"]);
 
     useEffect(() => {
-        client.getEntries({ content_type: 'project' })
-            .then((response) => {
-                const fetched: ProjectData[] = response.items.map((item: any) => {
+        // Map i18next language to Contentful locale
+        let contentfulLocale = 'en-US';
+        if (i18n.language === 'ru') contentfulLocale = 'ru';
+        if (i18n.language === 'kk') contentfulLocale = 'kk'; // Contentful uses kk-KZ or standard kk depending on setup, adjust if needed. standard usually ru / en-US.
+
+        const fetchProjects = async () => {
+            try {
+                const [localizedResponse, englishResponse] = await Promise.all([
+                    client.getEntries({ content_type: 'project', locale: contentfulLocale }),
+                    contentfulLocale !== 'en-US'
+                        ? client.getEntries({ content_type: 'project', locale: 'en-US' })
+                        : Promise.resolve(null)
+                ]);
+
+                const fallbackItems = englishResponse ? englishResponse.items : [];
+
+                const fetched: ProjectData[] = localizedResponse.items.map((item: any) => {
+                    const fallbackItem = fallbackItems.find((fb: any) => fb.sys.id === item.sys.id);
                     const fields = item.fields;
+                    const fbFields = fallbackItem ? fallbackItem.fields : fields;
 
-                    const tagTranslations: Record<string, string> = {
-                        'branding': 'Брендинг',
-                        'website': 'Разработка Сайтов',
-                        'animation': 'Анимация/Моушн',
-                        'motion': 'Анимация/Моушн',
-                        'marketing': 'Маркетинг/СММ'
-                    };
+                    // Tag normalization (we will translate keys in UI, so store raw identifiers here)
+                    const rawTags = fields.tags || fbFields.tags || [];
+                    const normalizedTags = rawTags.map((t: string) => {
+                        const tg = t.toLowerCase();
+                        if (tg === 'branding' || tg === 'брендинг') return 'branding';
+                        if (tg === 'website' || tg === 'разработка сайтов') return 'website';
+                        if (tg === 'animation' || tg === 'motion' || tg === 'анимация/моушн') return 'animation';
+                        if (tg === 'marketing' || tg === 'маркетинг/смм') return 'marketing';
+                        return 'other';
+                    });
 
-                    const rawTags = fields.tags || [];
-                    const translatedTags = rawTags.map((t: string) => tagTranslations[t.toLowerCase()] || t);
-
+                    const thumbnail = fields.thumbnail || fbFields.thumbnail;
                     let imgUrl = "";
-                    if (fields.thumbnail?.fields?.file?.url) {
-                        imgUrl = "https:" + fields.thumbnail.fields.file.url;
+                    if (thumbnail?.fields?.file?.url) {
+                        imgUrl = "https:" + thumbnail.fields.file.url;
                     }
 
-                    let linkUrl = fields.link;
+                    let linkUrl = fields.link || fbFields.link;
                     if (linkUrl && !linkUrl.startsWith('http')) {
                         linkUrl = 'https://' + linkUrl;
                     }
 
                     return {
                         id: item.sys.id,
-                        title: fields.name || 'Название проекта',
-                        description: fields.description || '',
-                        body: fields.description || '',
+                        title: fields.name || fbFields.name || 'Название проекта',
+                        description: fields.description || fbFields.description || '',
+                        body: fields.description || fbFields.description || '',
                         image: imgUrl || '/man1.jpg',
                         link: linkUrl,
-                        tags: translatedTags
+                        tags: Array.from(new Set(normalizedTags)) // Remove duplicates
                     };
                 });
 
@@ -66,20 +85,23 @@ export function Projects() {
 
                 const allTags = new Set<string>();
                 fetched.forEach(p => p.tags.forEach(t => allTags.add(t)));
-                const newCategories = ["Все", "Брендинг", "Разработка Сайтов", "Анимация/Моушн", "Маркетинг/СММ"];
-                Array.from(allTags).forEach(t => {
-                    if (!newCategories.includes(t)) newCategories.push(t);
-                });
+                const newCategories = ["all", "branding", "website", "animation", "marketing"];
+                // we only use default categories mapped above, any unrecognized ones could go to "other" or we only show defined ones. 
+                // Let's stick to the preset list as defined in state initialization to match translations cleanly.
                 setCategories(newCategories);
 
-            })
-            .catch(console.error);
-    }, []);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchProjects();
+    }, [i18n.language]);
 
     const closeModal = () => setSelectedProject(null);
 
     const filteredProjects = projectsData.filter(p =>
-        activeTab === "Все" ? true : p.tags.includes(activeTab)
+        activeTab === "all" ? true : p.tags.includes(activeTab)
     );
 
     return (
@@ -90,12 +112,12 @@ export function Projects() {
                         <button
                             key={cat}
                             onClick={() => setActiveTab(cat)}
-                            className={`flex-1 min-w-[calc(50%-8px)] sm:min-w-0 sm:flex-none px-4 sm:px-8 md:px-12 cursor-pointer py-2 rounded-full transition-all text-sm sm:text-base text-center hover:underline active:underline ${activeTab === cat
+                            className={`flex-1 min-w-[calc(50%-8px)] sm:min-w-0 sm:flex-none px-4 sm:px-6 md:px-8 cursor-pointer py-2 rounded-full transition-all text-sm sm:text-base text-center hover:underline active:underline ${activeTab === cat
                                 ? "bg-[#ff003c] text-white"
                                 : "bg-transparent text-neutral-500 hover:bg-neutral-200"
                                 }`}
                         >
-                            {cat}
+                            {t(`projects.${cat}`)}
                         </button>
                     ))}
                 </div>
@@ -147,7 +169,7 @@ export function Projects() {
                                     onClick={closeModal}
                                     className="w-full sm:w-auto px-8 py-3 rounded-full bg-neutral-100 border border-neutral-300 hover:bg-neutral-200 text-neutral-700 text-base font-medium transition-colors cursor-pointer text-center hover:underline active:underline"
                                 >
-                                    Понятно
+                                    {t('projects.understood')}
                                 </button>
                                 {selectedProject.link && (
                                     <a
@@ -156,7 +178,7 @@ export function Projects() {
                                         rel="noreferrer"
                                         className="w-full sm:w-auto flex justify-center items-center px-8 py-3 rounded-full bg-[#ff003c] hover:bg-[#e60036] text-white text-base font-medium transition-colors cursor-pointer hover:underline active:underline"
                                     >
-                                        Смотреть проект
+                                        {t('projects.view_project')}
                                     </a>
                                 )}
                             </div>
@@ -186,7 +208,8 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
                 <div className="absolute bottom-3 left-3 z-20 flex flex-wrap gap-2">
                     {project.tags.map(tag => (
                         <span key={tag} className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-medium tracking-tight border border-white/30">
-                            {tag}
+                            {/* Instead of passing down t() from parent to child just for tags, we'll assume ProjectCard gets a way to translate. Here we just use a tiny isolated translation hook or pass it as prop. Actually better to use useTranslation inside ProjectCard */}
+                            <TranslatedTag tag={tag} />
                         </span>
                     ))}
                 </div>
@@ -197,4 +220,9 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
             </div>
         </div>
     )
+}
+
+function TranslatedTag({ tag }: { tag: string }) {
+    const { t } = useTranslation();
+    return <>{t(`projects.${tag}`, { defaultValue: tag })}</>;
 }

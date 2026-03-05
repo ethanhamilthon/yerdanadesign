@@ -1,14 +1,17 @@
 import { m } from "motion/react"
+import { useTranslation } from "react-i18next";
 
 export function Seller() {
+    const { t } = useTranslation();
+
     return (
         <div className="w-full flex flex-col items-center gap-6 sm:gap-8 md:gap-10 mt-16 sm:mt-20 md:mt-24 overflow-hidden">
             <h2 className="text-xl sm:text-2xl md:text-3xl tracking-tighter leading-tight sm:leading-snug md:leading-7 text-center font-medium text-neutral-700 px-4 sm:px-6 md:px-0 max-w-[320px] sm:max-w-[600px] md:max-w-none">
-                Дизайн — это не набор картинок.
+                {t('seller.line1')}
                 <br className="hidden md:block" />
-                <span className="text-[#ff003c]">Это система,</span> которая объясняет продукт
+                <span className="text-[#ff003c]">{t('seller.line2_highlight')}</span> {t('seller.line2_rest')}
                 <br className="hidden md:block" />
-                и помогает бизнесу продавать.
+                {t('seller.line3')}
             </h2>
             <div className="w-full flex justify-center mt-2 sm:mt-4 md:mt-2">
                 <svg className="w-[800px] sm:w-[1200px] md:w-[1920px] h-auto shrink-0 max-w-none" viewBox="0 0 2001 230" fill="none" xmlns="http://www.w3.org/2000/svg">

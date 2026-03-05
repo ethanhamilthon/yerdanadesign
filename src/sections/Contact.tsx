@@ -1,34 +1,8 @@
 import { useState, useEffect } from "react";
-
-const services = [
-    {
-        name: "Маркетинговый дизайн",
-        more: "Создание креативов для рекламы, баннеров, оформление соцсетей и email-рассылок."
-    },
-    {
-        name: "Брендинг",
-        more: "Разработка логотипа, фирменного стиля, гайдлайнов и визуальной стратегии бренда.",
-    },
-    {
-        name: "Веб-дизайн / Cайт",
-        more: "Проектирование интерфейсов, дизайн лендингов, корпоративных сайтов и e-commerce."
-    },
-    {
-        name: "Motion-дизайн",
-        more: "Анимация логотипов, создание рекламных роликов, 2D/3D анимация и эксплейнеры.",
-    },
-    {
-        name: "Арт-дирекшн",
-        more: "Управление визуальной частью проекта, контроль качества и стилистики."
-    },
-    {
-        name: "Другое",
-        more: "Любые другие задачи, связанные с визуалом. Опишите подробнее при связи.",
-    },
-]
-
+import { useTranslation } from "react-i18next";
 
 export function Contact() {
+    const { t } = useTranslation();
     const [selectedServices, setSelectedServices] = useState<string[]>([]);
     const [contactMethod, setContactMethod] = useState<'telegram' | 'whatsapp'>('telegram');
     const [name, setName] = useState('');
@@ -54,7 +28,7 @@ export function Contact() {
         if (isSent || isSending) return;
 
         if (!name.trim() || !contact.trim()) {
-            alert("Пожалуйста, заполните имя и контактные данные.");
+            alert(t('contact.alert'));
             return;
         }
 
@@ -90,22 +64,24 @@ export function Contact() {
             setIsSent(true);
         } catch (error) {
             console.error("Ошибка при отправке: ", error);
-            alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
+            alert(t('contact.alert_error'));
         } finally {
             setIsSending(false);
         }
     };
 
+    const servicesList = t('contact.services', { returnObjects: true }) as { name: string, more: string }[];
+
     return (
         <div id="contact" className="w-full flex flex-col gap-8 sm:gap-10 md:gap-12 mt-12 sm:mt-16 md:mt-20 items-center">
             <h2 className="text-2xl sm:text-3xl tracking-tighter leading-tight sm:leading-7 text-center font-medium text-neutral-700 px-4">
-                Давайте обсудим ваш проект
+                {t('contact.title')}
                 <br />
-                <span className="font-normal text-base tracking-tight">Выберите тип задачи и оставьте контакт — я свяжусь с вами.</span>
+                <span className="font-normal text-base tracking-tight">{t('contact.subtitle')}</span>
             </h2>
             <div className="w-full px-4 sm:px-8 md:px-24 flex flex-col md:flex-row gap-8 md:gap-12">
                 <div className="w-full md:w-1/2 flex flex-col gap-3">
-                    {services.map((service, index) => (
+                    {servicesList.map((service, index) => (
                         <Service
                             key={index}
                             text={service.name}
@@ -118,10 +94,10 @@ export function Contact() {
                 <div className="w-full md:w-1/2 flex flex-col justify-between gap-8 md:gap-0">
                     <div className="w-full flex flex-col gap-6 md:gap-2">
                         <div className="flex flex-col gap-2 md:gap-0">
-                            <span className="text-neutral-700 text-base sm:text-lg tracking-tighter">Как вас зовут?</span>
+                            <span className="text-neutral-700 text-base sm:text-lg tracking-tighter">{t('contact.name')}</span>
                             <input
                                 type="text"
-                                placeholder="Ваше имя"
+                                placeholder={t('contact.name_placeholder')}
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 disabled={isSent}
@@ -129,26 +105,26 @@ export function Contact() {
                             />
                         </div>
                         <div className="flex flex-col items-start gap-3 md:gap-2">
-                            <span className="text-neutral-700 text-base sm:text-lg tracking-tighter">Как с вами связаться?</span>
+                            <span className="text-neutral-700 text-base sm:text-lg tracking-tighter">{t('contact.method')}</span>
                             <div className="flex flex-wrap sm:flex-nowrap px-2 sm:px-4 justify-center items-center py-2 gap-2 sm:gap-0 rounded-3xl sm:rounded-full bg-neutral-100 border border-neutral-300 w-full sm:w-auto">
                                 <button
                                     onClick={() => setContactMethod('telegram')}
                                     disabled={isSent}
                                     className={`flex-1 sm:flex-none px-4 sm:px-6 cursor-pointer py-2 rounded-full transition-colors text-sm sm:text-base ${contactMethod === 'telegram' ? 'bg-[#ff003c] text-white' : 'bg-transparent sm:bg-neutral-100 text-neutral-500 hover:bg-neutral-200'} disabled:opacity-60`}
                                 >
-                                    Telegram
+                                    {t('contact.tg')}
                                 </button>
                                 <button
                                     onClick={() => setContactMethod('whatsapp')}
                                     disabled={isSent}
                                     className={`flex-1 sm:flex-none px-4 sm:px-6 cursor-pointer py-2 rounded-full transition-colors text-sm sm:text-base ${contactMethod === 'whatsapp' ? 'bg-[#ff003c] text-white' : 'bg-transparent sm:bg-neutral-100 text-neutral-500 hover:bg-neutral-200'} disabled:opacity-60`}
                                 >
-                                    WhatsApp
+                                    {t('contact.wa')}
                                 </button>
                             </div>
                             <input
                                 type="text"
-                                placeholder="Ваш номер/юзернейм"
+                                placeholder={t('contact.contact_placeholder')}
                                 value={contact}
                                 onChange={(e) => setContact(e.target.value)}
                                 disabled={isSent}
@@ -166,7 +142,7 @@ export function Contact() {
                                 : "bg-[#ff003c] cursor-pointer active:scale-[0.98] hover:bg-[#e60036]"
                             }`}
                     >
-                        {isSent ? "Сообщение отправлено, отвечу как можно скорее!" : isSending ? "Отправка..." : "Отправить"}
+                        {isSent ? t('contact.btn_sent') : isSending ? t('contact.btn_sending') : t('contact.btn_send')}
                     </button>
                 </div>
             </div>

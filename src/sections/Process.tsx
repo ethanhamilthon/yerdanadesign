@@ -1,35 +1,16 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-
-const steps = [
-    {
-        id: 1,
-        title: "Погружение",
-        subtitle: "Я: Погружаюсь в продукт, рынок и задачи, чтобы понять, какое решение действительно нужно",
-        description: "Клиент: Делится информацией о бизнесе, продукте и целях проекта, чтобы сформировать точное понимание задачи.",
-    },
-    {
-        id: 2,
-        title: "Поиск решения",
-        subtitle: "Я: Проверяю разные идеи и выбираю наиболее сильную концепцию",
-        description: "Клиент: Изучает предложенные концепции, делится обратной связью и помогает выбрать направление для проекта.",
-    },
-    {
-        id: 3,
-        title: "Реализация",
-        subtitle: "Я: Превращаю концепцию в полноценный дизайн и готовлю все необходимые материалы",
-        description: "Клиент: Просматривает дизайн на ключевых этапах, дает комментарии и подтверждает финальное решение.",
-    },
-    {
-        id: 4,
-        title: "Финализация",
-        subtitle: "Я: Финализирую проект и обеспечиваю поддержку после запуска",
-        description: "Клиент: Получает готовые материалы, внедряет дизайн в работу и при необходимости обращается за поддержкой.",
-    }
-];
+import { useTranslation } from "react-i18next";
 
 export function Process() {
+    const { t } = useTranslation();
+    const stepsData = t("process.steps", { returnObjects: true }) as Array<{ title: string, subtitle: string, description: string }>;
+    const steps = stepsData.map((step, index) => ({
+        id: index + 1,
+        ...step
+    }));
+
     const [lineX, setLineX] = useState(0);
     const [activeStepId, setActiveStepId] = useState(1);
     const [isDragging, setIsDragging] = useState(false);
@@ -91,7 +72,7 @@ export function Process() {
     return (
         <div className="w-full flex flex-col items-center gap-4 sm:gap-6 mt-12 px-2 sm:px-6 md:px-0 overflow-hidden">
             <h2 className="text-2xl sm:text-3xl tracking-tighter leading-tight sm:leading-snug text-center font-medium text-neutral-800">
-                Как я работаю
+                {t('process.title')}
             </h2>
 
             <div
