@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../sections/Header";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { createClient } from "contentful";
+import { Helmet } from "react-helmet-async";
 
 const client = createClient({
     space: 'osbxgzswmmhk',
@@ -39,10 +40,9 @@ export function BlogArticle() {
                         imgUrl = "https:" + fields.thumbnail.fields.file.url;
                     }
 
-                    console.log(imgUrl);
-
                     setArticle({
                         title: fields.title || "Untitled",
+                        description: fields.description || "Article about our actual projects and news",
                         coverImage: imgUrl,
                         languageTag: fields.language || "RU",
                         content: fields.content // Rich text field
@@ -85,6 +85,17 @@ export function BlogArticle() {
 
     return (
         <div className="w-full flex md:contents flex-col gap-6">
+            <Helmet>
+                <title>{article.title}</title>
+                <meta property="og:title" content={article.title} />
+                <meta property="og:description" content={article.description} />
+                <meta property="og:image" content={article.coverImage} />
+                <meta property="og:type" content="article" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={article.title} />
+                <meta name="twitter:description" content={article.description} />
+                <meta name="twitter:image" content={article.coverImage} />
+            </Helmet>
             <Header />
             <div className="w-full max-w-5xl mx-auto flex flex-col gap-6 sm:gap-8 px-2 sm:px-6 md:px-0">
 
