@@ -17,6 +17,10 @@ export function BlogArticle() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         const fetchArticle = async () => {
             try {
                 // We use fields.uniquePath depending on what the user actually named it in Contentful
