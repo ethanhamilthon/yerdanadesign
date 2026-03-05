@@ -4,11 +4,11 @@ export function Seller() {
     return (
         <div className="w-full flex flex-col items-center gap-6 sm:gap-8 md:gap-10 mt-16 sm:mt-20 md:mt-24 overflow-hidden">
             <h2 className="text-xl sm:text-2xl md:text-3xl tracking-tighter leading-tight sm:leading-snug md:leading-7 text-center font-medium text-neutral-700 px-4 sm:px-6 md:px-0 max-w-[320px] sm:max-w-[600px] md:max-w-none">
-                Я проектирую визуальную
+                Дизайн — это не набор картинок.
                 <br className="hidden md:block" />
-                коммуникацию, которая <span className="text-[#ff003c]">объясняет сложное</span>
+                <span className="text-[#ff003c]">Это система,</span> которая объясняет продукт
                 <br className="hidden md:block" />
-                просто и продаёт без давления
+                и помогает бизнесу продавать.
             </h2>
             <div className="w-full flex justify-center mt-2 sm:mt-4 md:mt-2">
                 <svg className="w-[800px] sm:w-[1200px] md:w-[1920px] h-auto shrink-0 max-w-none" viewBox="0 0 2001 230" fill="none" xmlns="http://www.w3.org/2000/svg">

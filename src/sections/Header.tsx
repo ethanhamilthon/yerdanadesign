@@ -5,13 +5,13 @@ export function Header() {
             <nav className="w-full sticky top-0 py-4 px-6 sm:py-5 sm:px-10 md:py-6 md:px-16 bg-black/1 border backdrop-blur-sm border-white rounded-full flex justify-between items-center">
                 <img src="/logo.svg" alt="" className="w-[100px] h-[33px] md:w-[120px] md:h-[40px]" />
                 <div className="hidden lg:flex gap-10 items-center text-neutral-900">
-                    <a href="#" className="text-base font-normal text-neutral-500 tracking-tighter cursor-pointer">
+                    <a href="#about" className="text-base font-normal text-neutral-500 tracking-tighter cursor-pointer hover:underline hover:text-neutral-800 underline-offset-4 transition-all">
                         // Кто я
                     </a>
-                    <a href="#" className="text-base font-normal text-neutral-500 tracking-tighter cursor-pointer">
+                    <a href="#contact" className="text-base font-normal text-neutral-500 tracking-tighter cursor-pointer hover:underline hover:text-neutral-800 underline-offset-4 transition-all">
                         // Связаться
                     </a>
-                    <a href="#" className="text-base font-normal text-neutral-500 tracking-tighter cursor-pointer">
+                    <a href="#actual" className="text-base font-normal text-neutral-500 tracking-tighter cursor-pointer hover:underline hover:text-neutral-800 underline-offset-4 transition-all">
                         // Актуальное
                     </a>
                 </div>

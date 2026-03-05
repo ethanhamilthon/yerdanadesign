@@ -55,37 +55,37 @@ export function Hero() {
         <div ref={heroRef} className="w-full flex flex-col items-center gap-12 relative overflow-visible">
             <div className="w-full flex flex-col items-center gap-4 sm:gap-6">
                 <h1 className="relative text-3xl sm:text-4xl md:text-5xl tracking-tighter leading-6 sm:leading-8 md:leading-10 font-bold bg-linear-to-l from-[#2C2C2C] to-[#5F5F5F] bg-clip-text text-transparent text-center pt-4 sm:pt-8">
-                    Визуальная<SelectedText className="text-[#ff003c] font-bold!">коммуникация,</SelectedText>
+                    <SelectedText className="text-[#ff003c] font-bold!">Дизайн,</SelectedText> который превращает
                     <br />
-                    которая превращает
+                    идеи бизнеса
                     <br />
-                    идеи в систему продаж
+                    в работающую систему
 
                     <div style={getClampedStyle(0.15)} className="hidden md:block absolute top-0 -right-12 z-20 pointer-events-none">
                         <CursorBadge>
-                            Дизайнер
+                            Design
                         </CursorBadge>
                     </div>
 
                     <div style={getClampedStyle(-0.1)} className="hidden md:block absolute top-16 -left-12 z-20 pointer-events-none">
                         <CursorBadge position="right">
-                            Арт Директор
+                            Strategy
                         </CursorBadge>
                     </div>
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl tracking-tighter leading-tight sm:leading-4 text-center text-neutral-600">
-                    Проектирую дизайн решении, которые усиливают
-                    <br className="hidden sm:block" />
-                    {" "}позиционирование бизнеса
+                <p className="text-base sm:text-lg md:text-xl tracking-tighter leading-tight sm:leading-5 text-center text-neutral-600">
+                    От стратегии и брендинга до моушна,
+                    <br />
+                    сайтов и digital-коммуникации
                 </p>
             </div>
             <div className="w-full items-center justify-center flex flex-col sm:flex-row gap-4">
-                <a href="#" className="w-full sm:w-auto flex justify-center items-center relative gap-2.5 px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-neutral-100 border-2 border-neutral-400">
-                    <p className="text-lg sm:text-xl text-center text-black">Старт 🚀</p>
+                <a href="#contact" className="w-full sm:w-auto flex justify-center items-center relative gap-2.5 px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-neutral-100 border-2 border-neutral-400 hover:bg-neutral-200 transition-colors group cursor-pointer">
+                    <p className="text-lg sm:text-xl text-center text-black group-hover:underline underline-offset-4">Начать проект</p>
                 </a>
-                <a href="#" className="w-full sm:w-auto flex justify-center items-center relative gap-2.5 px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-[#ff003c] border border-transparent 
-[border-image:radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_100%)_1]">
-                    <p className="text-xl text-center text-white">Проекты 💻</p>
+                <a href="#projects" className="w-full sm:w-auto flex justify-center items-center relative gap-2.5 px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-[#ff003c] border border-transparent 
+[border-image:radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_100%)_1] hover:bg-[#e60036] transition-colors group cursor-pointer">
+                    <p className="text-xl text-center text-white group-hover:underline underline-offset-4">Кейсы</p>
                 </a>
             </div>
         </div>
