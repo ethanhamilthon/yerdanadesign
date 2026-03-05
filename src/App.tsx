@@ -2,6 +2,10 @@ import { Header } from "./sections/Header"
 import { Hero } from "./sections/Hero"
 import { Seller } from "./sections/Seller"
 import { AboutMe } from "./sections/AboutMe"
+import { Process } from "./sections/Process"
+import { Actual } from "./sections/Actual"
+import { AiNative } from "./sections/AiNative"
+import { CallToAction } from "./sections/CallToAction"
 import { Projects } from "./sections/Projects"
 import { Contact } from "./sections/Contact"
 
@@ -14,6 +18,11 @@ function App() {
       <AboutMe />
       <Projects />
       <Contact />
+      <Process />
+
+      <AiNative />
+      <CallToAction />
+      <Actual />
     </div>
   )
 }
