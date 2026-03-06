@@ -6,7 +6,7 @@ export function Header() {
 
     return (
         <header className="w-full sticky top-0 z-50 py-6 sm:py-8 md:py-12 px-0 sm:px-4 md:px-12">
-            <nav className="w-full sticky top-0 py-4 px-6 sm:py-5 sm:px-10 md:py-6 md:px-16 bg-black/1 border backdrop-blur-sm border-white rounded-full flex justify-between items-center">
+            <nav className="w-full sticky top-0 py-4 px-6 sm:py-5 sm:px-10 md:py-6 md:px-16 bg-white/20 border backdrop-blur-lg border-white rounded-full flex justify-between items-center">
                 <a href="/"><img src="/logo.svg" alt="" className="w-[100px] h-[33px] md:w-[120px] md:h-[40px] cursor-pointer" /></a>
                 <div className="hidden lg:flex gap-10 items-center text-neutral-900">
                     <a href="/#about" className="text-base font-normal text-neutral-500 tracking-tighter cursor-pointer hover:underline hover:text-neutral-800 underline-offset-4 transition-all">

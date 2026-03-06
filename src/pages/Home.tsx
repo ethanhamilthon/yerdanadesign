@@ -14,12 +14,11 @@ export default function Home() {
         <div className="w-full flex md:contents flex-col gap-12">
             <Header />
             <Hero />
-            <Seller />
-            <AboutMe />
             <Projects />
             <Contact />
+            <Seller />
+            <AboutMe />
             <Process />
-
             <AiNative />
             <CallToAction />
             <Actual />

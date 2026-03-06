@@ -89,12 +89,10 @@ export function Hero() {
                 </p>
             </div>
             <div className="w-full items-center justify-center flex flex-col sm:flex-row gap-4">
-                <a href="#contact" className="w-full sm:w-auto flex justify-center items-center relative gap-2.5 px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-neutral-100 border-2 border-neutral-400 hover:bg-neutral-200 transition-colors group cursor-pointer">
-                    <p className="text-lg sm:text-xl text-center text-black group-hover:underline underline-offset-4">{t('hero.start_project')}</p>
-                </a>
-                <a href="#projects" className="w-full sm:w-auto flex justify-center items-center relative gap-2.5 px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-[#ff003c] border border-transparent 
+
+                <a href="#contact" className="w-full sm:w-auto flex justify-center items-center relative gap-2.5 px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-[#ff003c] border border-transparent 
 [border-image:radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_100%)_1] hover:bg-[#e60036] transition-colors group cursor-pointer">
-                    <p className="text-xl text-center text-white group-hover:underline underline-offset-4">{t('hero.cases')}</p>
+                    <p className="text-xl text-center text-white group-hover:underline underline-offset-4">{t('hero.start_project')}</p>
                 </a>
             </div>
         </div>
