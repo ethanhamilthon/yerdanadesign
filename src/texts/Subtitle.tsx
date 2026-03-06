@@ -7,7 +7,7 @@ interface SubtitleProps {
 
 export function Subtitle({ children, className = "" }: SubtitleProps) {
     return (
-        <h2 className={`text-2xl md:text-3xl font-bold text-neutral-800 ${className}`}>
+        <h2 className={`text-2xl md:text-3xl font-bold text-neutral-200 ${className}`}>
             {children}
         </h2>
     );

@@ -1,4 +1,4 @@
-import { m } from "motion/react"
+import { motion } from "motion/react"
 import { useTranslation } from "react-i18next";
 
 export function Seller() {
@@ -6,7 +6,7 @@ export function Seller() {
 
     return (
         <div className="w-full flex flex-col items-center gap-6 sm:gap-8 md:gap-10 mt-16 sm:mt-20 md:mt-24 overflow-hidden">
-            <h2 className="text-xl sm:text-2xl md:text-3xl tracking-tighter leading-tight sm:leading-snug md:leading-7 text-center font-medium text-neutral-700 px-4 sm:px-6 md:px-0 max-w-[320px] sm:max-w-[600px] md:max-w-none">
+            <h2 className="text-xl sm:text-2xl md:text-3xl tracking-tighter leading-tight sm:leading-snug md:leading-7 text-center font-medium text-neutral-100 px-4 sm:px-6 md:px-0 max-w-[320px] sm:max-w-[600px] md:max-w-none">
                 {t('seller.line1')}
                 <br className="hidden md:block" />
                 <span className="text-[#ff003c]">{t('seller.line2_highlight')}</span> {t('seller.line2_rest')}
@@ -15,12 +15,12 @@ export function Seller() {
             </h2>
             <div className="w-full flex justify-center mt-2 sm:mt-4 md:mt-2">
                 <svg className="w-[800px] sm:w-[1200px] md:w-[1920px] h-auto shrink-0 max-w-none" viewBox="0 0 2001 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M867.5 78.5H668.094C633.458 78.5 600.241 64.7411 575.75 40.25C551.259 15.7589 518.042 2 483.406 2H0" stroke="#C1C1C1" stroke-width="3" />
-                    <path d="M867.5 103.5H657.28C628.858 103.5 600.868 96.548 575.75 83.25C550.632 69.952 522.642 63 494.22 63H0" stroke="#C1C1C1" stroke-width="3" />
-                    <path d="M867.5 129H657.28C628.858 129 600.868 135.952 575.75 149.25C550.632 162.548 522.642 169.5 494.22 169.5H0" stroke="#C1C1C1" stroke-width="3" />
-                    <path d="M867.5 152H668.094C633.458 152 600.241 165.759 575.75 190.25C551.259 214.741 518.042 228.5 483.406 228.5H0" stroke="#C1C1C1" stroke-width="3" />
+                    <path d="M867.5 78.5H668.094C633.458 78.5 600.241 64.7411 575.75 40.25C551.259 15.7589 518.042 2 483.406 2H0" stroke="#1e1e1e" stroke-width="3" />
+                    <path d="M867.5 103.5H657.28C628.858 103.5 600.868 96.548 575.75 83.25C550.632 69.952 522.642 63 494.22 63H0" stroke="#1e1e1e" stroke-width="3" />
+                    <path d="M867.5 129H657.28C628.858 129 600.868 135.952 575.75 149.25C550.632 162.548 522.642 169.5 494.22 169.5H0" stroke="#1e1e1e" stroke-width="3" />
+                    <path d="M867.5 152H668.094C633.458 152 600.241 165.759 575.75 190.25C551.259 214.741 518.042 228.5 483.406 228.5H0" stroke="#1e1e1e" stroke-width="3" />
                     <path d="M867.5 152H668.094C633.458 152 600.241 165.759 575.75 190.25C551.259 214.741 518.042 228.5 483.406 228.5H0" stroke="url(#paint0_linear_30_369)" stroke-width="3" />
-                    <path d="M1141.5 113H2000.5" stroke="#C1C1C1" stroke-width="3" />
+                    <path d="M1141.5 113H2000.5" stroke="#1e1e1e" stroke-width="3" />
                     <path d="M1141.5 113H2000.5" stroke="url(#paint1_linear_30_369)" stroke-width="3" />
                     <path d="M867.5 129H657.28C628.858 129 600.868 135.952 575.75 149.25C550.632 162.548 522.642 169.5 494.22 169.5H0" stroke="url(#paint2_linear_30_369)" stroke-width="3" />
                     <path d="M867.5 103.5H657.28C628.858 103.5 600.868 96.548 575.75 83.25C550.632 69.952 522.642 63 494.22 63H0" stroke="url(#paint3_linear_30_369)" stroke-width="3" />
@@ -119,7 +119,7 @@ export function Seller() {
                                 calcMode="ease-in-out"
                             />
                         </linearGradient>
-                        <m.linearGradient id="paint4_linear_30_369" x1="264" y1="55.8529" x2="720" y2="211.638" gradientUnits="userSpaceOnUse">
+                        <motion.linearGradient id="paint4_linear_30_369" x1="264" y1="55.8529" x2="720" y2="211.638" gradientUnits="userSpaceOnUse">
                             <stop stop-color="#FF003C" stop-opacity="0" />
                             <stop offset="0.461538" stop-color="#FF003C" />
                             <stop offset="1" stop-color="#FF003C" stop-opacity="0" />
@@ -137,7 +137,7 @@ export function Seller() {
                                 repeatCount="indefinite"
                                 calcMode="ease-in-out"
                             />
-                        </m.linearGradient>
+                        </motion.linearGradient>
                     </defs>
                 </svg>
             </div>

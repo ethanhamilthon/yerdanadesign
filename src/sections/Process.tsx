@@ -71,7 +71,7 @@ export function Process() {
 
     return (
         <div className="w-full flex flex-col items-center gap-4 sm:gap-6 mt-12 px-2 sm:px-6 md:px-0 overflow-hidden">
-            <h2 className="text-2xl sm:text-3xl tracking-tighter leading-tight sm:leading-snug text-center font-medium text-neutral-800">
+            <h2 className="text-2xl sm:text-3xl tracking-tighter leading-tight sm:leading-snug text-center font-medium text-neutral-100">
                 {t('process.title')}
             </h2>
 
@@ -93,8 +93,8 @@ export function Process() {
                         transitionTimingFunction: 'ease-out'
                     }}
                 >
-                    <div className="w-0 h-0 border-l-[16px] border-l-transparent border-r-[16px] border-r-transparent border-t-[20px] border-t-neutral-800 shrink-0 drop-shadow-sm pointer-events-none"></div>
-                    <div className="w-[2px] h-full bg-neutral-800 pointer-events-none z-0"></div>
+                    <div className="w-0 h-0 border-l-[16px] border-l-transparent border-r-[16px] border-r-transparent border-t-[20px] border-t-neutral-200 shrink-0 drop-shadow-sm pointer-events-none"></div>
+                    <div className="w-[2px] h-full bg-neutral-200 pointer-events-none z-0"></div>
                 </div>
 
                 <div className="flex flex-col w-full z-0 relative pt-12 pb-8 gap-2 pointer-events-none">
@@ -119,7 +119,7 @@ export function Process() {
                                     w-full overflow-hidden transition-all duration-300 pointer-events-auto px-4 sm:px-6 py-3 sm:py-4
                                     ${isActive
                                         ? 'bg-[#ff003c] text-white rounded-2xl block'
-                                        : 'bg-[#e5e5e5] text-neutral-800 rounded-2xl border border-[#A8A8A8] flex items-center'
+                                        : 'bg-[#181a1f] text-neutral-200 rounded-2xl border border-neutral-800 flex items-center'
                                     }
                                 `}>
                                     <div className={`flex flex-col w-full transition-all duration-300`}>

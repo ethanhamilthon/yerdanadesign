@@ -5,7 +5,7 @@ export function CallToAction() {
     return (
         <div className="w-full flex flex-col items-center mt-16 sm:mt-24 md:mt-32 mb-6 sm:mb-12">
             <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 px-4 md:px-0">
-                <h2 className="text-2xl sm:text-3xl tracking-tighter leading-[1.1] font-medium text-neutral-800 text-center md:text-left">
+                <h2 className="text-2xl sm:text-3xl tracking-tighter leading-[1.1] font-medium text-neutral-100 text-center md:text-left">
                     {t('cta.title_1')}<br />
                     {t('cta.title_2')}
                 </h2>

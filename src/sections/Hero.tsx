@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CursorBadge } from "../components/CursorBadge";
 import { SelectedText } from "../components/SelectedText";
+import { motion } from "motion/react";
 
 export function Hero() {
     const heroRef = useRef<HTMLDivElement>(null);
@@ -56,30 +57,80 @@ export function Hero() {
     return (
         <div ref={heroRef} className="w-full flex flex-col items-center gap-12 relative overflow-visible">
             <div className="w-full flex flex-col items-center gap-4 sm:gap-6">
-                <h1 className="relative text-3xl sm:text-4xl md:text-5xl tracking-tighter leading-6 sm:leading-8 md:leading-10 font-bold bg-linear-to-l from-[#2C2C2C] to-[#5F5F5F] bg-clip-text text-transparent text-center pt-4 sm:pt-8">
-                    <SelectedText className="text-[#ff003c] font-bold!">{t('hero.design_title')}</SelectedText> {
+                <motion.h1
+                    key={t('hero.turns_ideas')}
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: {
+                            opacity: 1,
+                            transition: {
+                                staggerChildren: 0.16,
+                            }
+                        }
+                    }}
+                    className="relative text-3xl sm:text-4xl md:text-5xl tracking-tighter leading-6 sm:leading-8 md:leading-10 font-bold bg-linear-to-b from-white to-neutral-500 bg-clip-text text-transparent text-center pt-4 sm:pt-8"
+                >
+                    <motion.span variants={{
+                        hidden: { opacity: 0, y: 15 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] } }
+                    }} className="inline-block whitespace-nowrap">
+                        <SelectedText className="text-[#ff003c] font-bold!">{t('hero.design_title')}</SelectedText>
+                    </motion.span>
+                    {' '}
+                    {
                         // Split translation text by newline and add <br />s
-                        t('hero.turns_ideas').split('\n').map((line, i, arr) => (
-                            <span key={i}>
-                                {line}
-                                {i < arr.length - 1 && <br />}
+                        t('hero.turns_ideas').split('\n').map((line, lineIndex, lineArr) => (
+                            <span key={`line-${lineIndex}`}>
+                                {line.split(' ').map((word, wordIndex, wordArr) => (
+                                    <span key={`word-container-${lineIndex}-${wordIndex}`} className="inline-block overflow-hidden py-1 -my-1">
+                                        <motion.span
+                                            variants={{
+                                                hidden: { opacity: 0, y: 30 },
+                                                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] } }
+                                            }}
+                                            className="inline-block"
+                                        >
+                                            {word}
+                                        </motion.span>
+                                        {wordIndex < wordArr.length - 1 && <span className="inline-block">&nbsp;</span>}
+                                    </span>
+                                ))}
+                                {lineIndex < lineArr.length - 1 && <br />}
                             </span>
                         ))
                     }
 
-                    <div style={getClampedStyle(0.15)} className="hidden md:block absolute top-0 -right-12 z-20 pointer-events-none">
-                        <CursorBadge>
-                            {t('hero.badge_design')}
-                        </CursorBadge>
-                    </div>
+                    <motion.div
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: { opacity: 1, transition: { duration: 0.8, delay: 0.5 } }
+                        }}
+                        className="hidden md:block absolute top-0 -right-12 z-20 pointer-events-none"
+                    >
+                        <div style={getClampedStyle(0.15)}>
+                            <CursorBadge>
+                                {t('hero.badge_design')}
+                            </CursorBadge>
+                        </div>
+                    </motion.div>
 
-                    <div style={getClampedStyle(-0.1)} className="hidden md:block absolute top-16 -left-12 z-20 pointer-events-none">
-                        <CursorBadge position="right">
-                            {t('hero.badge_strategy')}
-                        </CursorBadge>
-                    </div>
-                </h1>
-                <p className="text-base sm:text-lg md:text-xl tracking-tighter leading-tight sm:leading-5 text-center text-neutral-600">
+                    <motion.div
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: { opacity: 1, transition: { duration: 0.8, delay: 0.5 } }
+                        }}
+                        className="hidden md:block absolute top-16 -left-12 z-20 pointer-events-none"
+                    >
+                        <div style={getClampedStyle(-0.1)}>
+                            <CursorBadge position="right">
+                                {t('hero.badge_strategy')}
+                            </CursorBadge>
+                        </div>
+                    </motion.div>
+                </motion.h1>
+                <p className="text-base sm:text-lg md:text-xl tracking-tighter leading-tight sm:leading-5 text-center text-neutral-400">
                     {t('hero.subtitle').split('\n').map((line, i, arr) => (
                         <span key={i}>
                             {line}

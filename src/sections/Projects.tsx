@@ -107,14 +107,14 @@ export function Projects() {
     return (
         <div id="projects" className="w-full flex flex-col gap-8 sm:gap-10 md:gap-12 mt-12 sm:mt-16 md:mt-20 items-center overflow-hidden">
             <div className="w-full px-4 sm:px-8 md:px-24 flex items-center justify-center">
-                <div className="flex flex-wrap p-2 sm:px-6 md:px-12 justify-center items-center gap-2 sm:gap-0 sm:py-2 rounded-4xl sm:rounded-full bg-neutral-100 border border-neutral-300 w-full md:w-auto">
+                <div className="flex flex-wrap p-2 sm:px-6 md:px-12 justify-center items-center gap-2 sm:gap-0 sm:py-2 rounded-4xl sm:rounded-full bg-black/40 border border-neutral-800 w-full md:w-auto">
                     {categories.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setActiveTab(cat)}
                             className={`flex-1 min-w-[calc(50%-8px)] sm:min-w-0 sm:flex-none px-4 sm:px-6 md:px-8 cursor-pointer py-2 rounded-full transition-all text-sm sm:text-base text-center hover:underline active:underline ${activeTab === cat
                                 ? "bg-[#ff003c] text-white"
-                                : "bg-transparent text-neutral-500 hover:bg-neutral-200"
+                                : "bg-transparent text-neutral-400 hover:bg-neutral-800"
                                 }`}
                         >
                             {t(`projects.${cat}`)}
@@ -138,12 +138,12 @@ export function Projects() {
                     onClick={closeModal}
                 >
                     <div
-                        className="bg-white rounded-3xl sm:rounded-4xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-10 flex flex-col gap-6 shadow-2xl relative animate-in zoom-in-95 duration-300"
+                        className="bg-[#0f1115] border border-neutral-800 rounded-3xl sm:rounded-4xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-10 flex flex-col gap-6 shadow-2xl relative animate-in zoom-in-95 duration-300"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
                             onClick={closeModal}
-                            className="absolute z-20 top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white sm:bg-neutral-100 hover:bg-neutral-200 text-neutral-600 shadow-sm transition-colors cursor-pointer"
+                            className="absolute z-20 top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-[#181a1f] sm:bg-[#181a1f] hover:bg-neutral-800 text-neutral-200 shadow-sm transition-colors cursor-pointer"
                         >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -156,18 +156,18 @@ export function Projects() {
                         </div>
 
                         <div className="flex flex-col gap-4">
-                            <h3 className="text-2xl sm:text-3xl font-medium leading-tight text-neutral-800">
+                            <h3 className="text-2xl sm:text-3xl font-medium leading-tight text-neutral-100">
                                 {selectedProject.title}
                             </h3>
-                            <div className="w-full h-px bg-neutral-200"></div>
-                            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed whitespace-pre-wrap">
+                            <div className="w-full h-px bg-neutral-800"></div>
+                            <p className="text-base sm:text-lg text-neutral-300 leading-relaxed whitespace-pre-wrap">
                                 {selectedProject.body}
                             </p>
 
                             <div className="mt-4 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                                 <button
                                     onClick={closeModal}
-                                    className="w-full sm:w-auto px-8 py-3 rounded-full bg-neutral-100 border border-neutral-300 hover:bg-neutral-200 text-neutral-700 text-base font-medium transition-colors cursor-pointer text-center hover:underline active:underline"
+                                    className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#181a1f] border border-neutral-800 hover:bg-neutral-800 text-neutral-200 text-base font-medium transition-colors cursor-pointer text-center hover:underline active:underline"
                                 >
                                     {t('projects.understood')}
                                 </button>
@@ -215,8 +215,8 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
                 </div>
             </div>
             <div className="w-full flex flex-col gap-1 px-1">
-                <h3 className="text-xl sm:text-2xl font-medium leading-tight text-neutral-700 group-hover:text-black transition-colors group-hover:underline group-active:underline">{project.title}</h3>
-                <p className="text-base sm:text-lg text-neutral-500 truncate">{project.description}</p>
+                <h3 className="text-xl sm:text-2xl font-medium leading-tight text-neutral-200 group-hover:text-white transition-colors group-hover:underline group-active:underline">{project.title}</h3>
+                <p className="text-base sm:text-lg text-neutral-400 truncate">{project.description}</p>
             </div>
         </div>
     )

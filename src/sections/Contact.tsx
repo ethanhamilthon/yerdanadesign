@@ -74,7 +74,7 @@ export function Contact() {
 
     return (
         <div id="contact" className="w-full flex flex-col gap-8 sm:gap-10 md:gap-12 mt-12 sm:mt-16 md:mt-20 items-center">
-            <h2 className="text-2xl sm:text-3xl tracking-tighter leading-tight sm:leading-7 text-center font-medium text-neutral-700 px-4">
+            <h2 className="text-2xl sm:text-3xl tracking-tighter leading-tight sm:leading-7 text-center font-medium text-neutral-100 px-4">
                 {t('contact.title')}
                 <br />
                 <span className="font-normal text-base tracking-tight">{t('contact.subtitle')}</span>
@@ -94,30 +94,30 @@ export function Contact() {
                 <div className="w-full md:w-1/2 flex flex-col justify-between gap-8 md:gap-0">
                     <div className="w-full flex flex-col gap-6 md:gap-2">
                         <div className="flex flex-col gap-2 md:gap-0">
-                            <span className="text-neutral-700 text-base sm:text-lg tracking-tighter">{t('contact.name')}</span>
+                            <span className="text-neutral-200 text-base sm:text-lg tracking-tighter">{t('contact.name')}</span>
                             <input
                                 type="text"
                                 placeholder={t('contact.name_placeholder')}
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 disabled={isSent}
-                                className="bg-neutral-50 border border-neutral-400 rounded-full placeholder:text-neutral-400 px-6 py-3 text-neutral-800 disabled:opacity-60"
+                                className="bg-neutral-900 w-full border border-neutral-800 rounded-full placeholder:text-neutral-500 px-6 py-3 text-neutral-100 disabled:opacity-60"
                             />
                         </div>
                         <div className="flex flex-col items-start gap-3 md:gap-2">
-                            <span className="text-neutral-700 text-base sm:text-lg tracking-tighter">{t('contact.method')}</span>
-                            <div className="flex flex-wrap sm:flex-nowrap px-2 sm:px-4 justify-center items-center py-2 gap-2 sm:gap-0 rounded-3xl sm:rounded-full bg-neutral-100 border border-neutral-300 w-full sm:w-auto">
+                            <span className="text-neutral-200 text-base sm:text-lg tracking-tighter">{t('contact.method')}</span>
+                            <div className="flex flex-wrap sm:flex-nowrap px-2 sm:px-4 justify-center items-center py-2 gap-2 sm:gap-0 rounded-3xl sm:rounded-full bg-black/40 border border-neutral-800 w-full sm:w-auto">
                                 <button
                                     onClick={() => setContactMethod('telegram')}
                                     disabled={isSent}
-                                    className={`flex-1 sm:flex-none px-4 sm:px-6 cursor-pointer py-2 rounded-full transition-colors text-sm sm:text-base ${contactMethod === 'telegram' ? 'bg-[#ff003c] text-white' : 'bg-transparent sm:bg-neutral-100 text-neutral-500 hover:bg-neutral-200'} disabled:opacity-60`}
+                                    className={`flex-1 sm:flex-none px-4 sm:px-6 cursor-pointer py-2 rounded-full transition-colors text-sm sm:text-base ${contactMethod === 'telegram' ? 'bg-[#ff003c] text-white' : 'bg-transparent sm:bg-[#181a1f] text-neutral-400 hover:bg-neutral-800'} disabled:opacity-60`}
                                 >
                                     {t('contact.tg')}
                                 </button>
                                 <button
                                     onClick={() => setContactMethod('whatsapp')}
                                     disabled={isSent}
-                                    className={`flex-1 sm:flex-none px-4 sm:px-6 cursor-pointer py-2 rounded-full transition-colors text-sm sm:text-base ${contactMethod === 'whatsapp' ? 'bg-[#ff003c] text-white' : 'bg-transparent sm:bg-neutral-100 text-neutral-500 hover:bg-neutral-200'} disabled:opacity-60`}
+                                    className={`flex-1 sm:flex-none px-4 sm:px-6 cursor-pointer py-2 rounded-full transition-colors text-sm sm:text-base ${contactMethod === 'whatsapp' ? 'bg-[#ff003c] text-white' : 'bg-transparent sm:bg-[#181a1f] text-neutral-400 hover:bg-neutral-800'} disabled:opacity-60`}
                                 >
                                     {t('contact.wa')}
                                 </button>
@@ -128,7 +128,7 @@ export function Contact() {
                                 value={contact}
                                 onChange={(e) => setContact(e.target.value)}
                                 disabled={isSent}
-                                className="bg-neutral-50 w-full border border-neutral-400 rounded-full placeholder:text-neutral-400 px-6 py-3 text-neutral-800 disabled:opacity-60"
+                                className="bg-neutral-900 w-full border border-neutral-800 rounded-full placeholder:text-neutral-500 px-6 py-3 text-neutral-100 disabled:opacity-60"
                             />
                         </div>
                     </div>
@@ -167,7 +167,7 @@ function Service({ isActive = false, text, more, onClick }: ServiceProps) {
 
     return <div onClick={onClick} className={`w-full cursor-pointer rounded-4xl sm:rounded-full flex justify-between items-center border px-4 sm:px-8 py-3 gap-2 transition-all duration-300 ${isActive
         ? "bg-[#ff003c] text-white border-[#ff003c]"
-        : "bg-neutral-200 text-neutral-500 border-neutral-400 hover:border-neutral-500"
+        : "bg-neutral-900 text-neutral-400 border-neutral-800 hover:border-neutral-600"
         }`}>
         <span className="text-sm sm:text-base leading-tight">{text}</span>
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
